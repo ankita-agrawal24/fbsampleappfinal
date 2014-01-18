@@ -1,0 +1,53 @@
+<% provide(:title, 'Album Page') %>
+<h2>View Page</h2>
+
+<div class="row">
+  <div class="span6 offset3">
+   	<%= form_for(Photo.new, :url => album_photos_path(@album.id), method: :post) do |f| %>
+		<ul class="list-group">
+		 	<li class="list-group-item">
+			  	<h4>Album Name&nbsp;&nbsp;&nbsp;
+			  		<span class="label label-default">
+			  			<%= label_tag @album.name %>						
+					</span>
+				</h4><br />
+				<h4>Description&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= label_tag @album.description %>
+					</span>
+				</h4><br />
+		  		<h4>Scope&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= label_tag @album.scope %>
+					</span>
+				</h4><br />
+		  	</li>
+		  	<% if alert.present? %>
+			 <div id="error_explanation">
+			 	<div class="alert alert-error">
+			  		<%= alert %>
+	    		</div>
+	    	</div>
+	    	<% end %>
+		  
+		  	<li class="list-group-item">
+		  		<h4>Photo Name&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= f.text_field :pname %>
+					</span>
+				</h4><br />
+		  	</li> 
+		  	<li class="list-group-item">
+		  		<h4>Photo Path&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= f.file_field :purl %>
+					</span>
+				</h4><br />
+		  	</li> 
+		  	<%= f.submit "Add Photo",  :class => "btn btn-primary btn-large " %>
+		</ul>
+
+		<%= render 'photos/photo_list' %>
+	<% end %>
+	</div>
+</div>

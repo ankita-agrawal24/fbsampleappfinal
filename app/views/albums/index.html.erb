@@ -1,0 +1,41 @@
+<% provide(:title, 'index Page') %>
+<h2>index Page</h2>
+
+<div class="row">
+  <div class="span6 offset3">
+  	<%  if @albums %>
+	  	<% @albums.each do |album|  %> 
+		 	<ul class="list-group">
+			 	<li class="list-group-item">			 	
+				  	<h4>Album Name&nbsp;&nbsp;&nbsp;
+				  		<span class="label label-default">
+				  			<%= label_tag album.name %>						
+						</span>
+					</h4><br />
+					<h4>Description&nbsp;&nbsp;&nbsp;
+			  			<span class="label label-default">
+							<%= label_tag album.description %>
+						</span>
+					</h4><br />
+			  		<h4>Scope&nbsp;&nbsp;&nbsp;
+			  			<span class="label label-default">
+							<%= label_tag album.scope %>
+						</span>
+					</h4><br />
+					<center>
+						<%= link_to "View Photos", page_album_photos_path(@user.id,album.id) %>
+					</center>
+				</li>
+			</ul>
+		<% end %>
+	<% else %>
+	    <div class="alert alert-error">
+	    	<center>
+	    		<%= label_tag "Sorry this user have no Albums...." %>
+	    	</center>
+		</div>
+	<% end %>
+		 
+		<%#= render 'photos/photo_list' %>
+	</div>
+</div>

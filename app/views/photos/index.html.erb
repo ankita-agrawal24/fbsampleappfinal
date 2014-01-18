@@ -1,0 +1,22 @@
+<div class="row">
+  <br/><br/><br/><br/>
+  <center>
+     <ol class="breadcrumb">
+      <li>User</a></li>
+      <li>Albums</a></li>
+      <li class="active">Photos</li>
+    </ol>
+  </center>
+  <% @album.photos.each do |photo| %> 
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+          <center>
+            <b><%= photo.pname %></b>
+          </center>       
+          <div class="caption">
+            <%= image_tag photo.purl %>
+          </div>
+      </div>
+    </div>
+  <% end %>
+</div>

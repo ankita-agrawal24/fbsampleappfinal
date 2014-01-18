@@ -1,0 +1,30 @@
+<% provide(:title, 'Home') %>
+<div class="container"><hr>
+<div class="row">
+    <br/><br/><%= render 'shared/search' %>
+    <div>     
+        <div> 
+            <center>
+            <%= paginate @users, :theme => 'twitter-bootstrap-3', 
+                :pagination_class => "pagination-lg" %>
+            </center> 
+        </div>
+        <% @users.each do |user| %>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3>
+                            <%= link_to user.name, usershow_path(user) %>
+                        </h3>
+                    </div>
+                    <div class="panel-body panelbodylead">
+                        <b>Email Address :</b>
+                        <%= user.email %><br>
+                        <b>Location : </b>
+                        <%= user.location %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>   

@@ -1,0 +1,74 @@
+<% provide(:title, 'View Page') %>
+<h2>View Page</h2>
+
+<div class="row">
+  <div class="span6 offset3">
+	 <%= form_tag(remote: true) do |f| %>
+		<ul class="list-group">
+			<% if user_signed_in? %>
+				<% if @user.photo.present? %>
+					<li class="list-group-item">
+				  	<h4>Profile Pic&nbsp;&nbsp;&nbsp;
+				  		<span class="label label-default">
+						 	<%= image_tag @user.photo.url %> 
+						</span>
+					</h4><br />
+				  	</li>
+			 	<% end %>
+			<% end %>
+
+		  	<li class="list-group-item">
+			  	<h4>User Name&nbsp;&nbsp;&nbsp;
+			  		<span class="label label-default">
+						<%= label_tag @user.name %>
+					</span>
+				</h4><br />
+		  	</li>
+
+		  	<li class="list-group-item">
+		  		<h4>Location&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= label_tag @user.location %>
+					</span>
+				</h4><br />
+		  	</li>
+		  
+		  	<li class="list-group-item">
+		  		<h4>Email&nbsp;&nbsp;&nbsp;
+		  			<span class="label label-default">
+						<%= label_tag @user.email %>
+						<%= label_tag @user.id %>
+					</span>
+				</h4><br />
+		  	</li>
+		  
+		  	<li class="list-group-item">
+		  		<h4><%= render 'shared/stats' %>
+				</h4><br />
+				<%= link_to "View Album",page_albums_path(@user.id) %>				
+		  	</li>
+		</ul>
+	 <% end %>
+	 <center>
+	 	<% if user_signed_in? %>
+			<%= render 'shared/follow_form' %>
+		<% end %>
+			<%= link_to "Back",root_url, class: "btn btn-large btn-primary" %>
+	</center>
+	<div>
+		<% @user.followers.each do |follow| %>
+			<% follow.followed_users.each do |followed| %>
+		   		<% if followed == @user %>	
+					<table class="table table-responsive">
+						<tr>	
+							<td class="active"><%=  follow.name %></td>	
+							<td class="active"><%=  follow.email %></td>	
+							<td class="active"><%=  follow.location %></td>	
+						</tr>			
+					</table>
+				<% end %>
+			<% end %>
+		<% end %>
+	</div>
+   </div>
+</div>

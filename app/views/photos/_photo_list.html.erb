@@ -1,0 +1,15 @@
+
+<div class="row">
+<% @photos.each do |photo| %>
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+         <center><b><%= photo.pname %></b></center>
+        <%= image_tag photo.purl %>
+        <div class="caption">
+       <center><%= link_to "Remove", album_photo_path(@album.id,photo.id) , method: :delete, :class => "btn btn-danger btn-small" %> 
+       </center>
+        </div>
+    </div>
+  </div>
+<% end %>
+</div>
